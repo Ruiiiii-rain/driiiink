@@ -1,0 +1,13 @@
+# 数据与隐私（绝不提交）
+data/
+*.db
+*.db-wal
+*.db-shm
+*.legacy-*.json
+*.migrated-*
+*归档*
+
+# 临时与发布物
+*.zip
+cloudflared.exe
+node_modules/

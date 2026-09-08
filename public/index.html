@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>喝了么</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍵</text></svg>">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- 顶栏 -->
+    <header id="topbar" class="topbar" hidden>
+      <div class="brand">喝了么 <span id="idTag" class="id-tag" hidden>临时</span></div>
+      <div class="top-actions">
+        <button id="btnSettings" class="icon-btn" title="设置（免打扰）"><img id="btnSettingsIco" class="top-ico" src="/images/ui/icon-settings.svg" alt="设置"></button>
+        <button id="btnSwitch" class="ghost-btn" title="双开演示：在此窗口新建/清除临时身份，不影响其他窗口">换身份</button>
+      </div>
+    </header>
+
+    <!-- 注册视图 -->
+    <section id="view-register" class="panel register-card" hidden>
+      <div class="register-hero"><img src="/images/mascot-cup.svg" alt="小杯吉祥物"></div>
+      <h1>喝了么</h1>
+      <p class="subtitle">喝一杯，喊水友一声 ——<br>先给自己起个名字吧</p>
+      <input id="nickname" type="text" maxlength="16" placeholder="你的昵称（如：老张）" autocomplete="off">
+      <input id="regPassword" type="password" maxlength="32" placeholder="设置密码（至少 6 位）" autocomplete="new-password">
+      <div id="avatarGrid" class="avatar-grid" aria-label="选择头像"></div>
+      <button id="btnRegister" class="primary-btn big">开始喝水</button>
+      <button id="btnToLogin" class="link-btn reg-switch-link" type="button">已有账号？去登录</button>
+
+      <div id="loginBox" class="login-box" hidden>
+        <input id="loginNick" type="text" maxlength="16" placeholder="昵称" autocomplete="username">
+        <input id="loginPw" type="password" maxlength="32" placeholder="密码" autocomplete="current-password">
+        <button id="btnLogin" class="primary-btn big">登录</button>
+        <button id="btnToReg" class="link-btn reg-switch-link" type="button">没有账号？去注册</button>
+      </div>
+    </section>
+
+    <!-- 应用主视图 -->
+    <main id="view-app" class="panel" hidden>
+
+      <!-- Tab：喝水 -->
+      <div id="panel-drink" class="tab-panel">
+        <div id="waitingLine" class="waiting-line" hidden></div>
+        <div id="replyBanner" class="home-banner" hidden></div>
+        <div class="card today-card">
+          <div class="today-head">
+            <div>
+              <div class="today-date" id="todayDate"></div>
+              <div class="today-greeting" id="todayGreeting"></div>
+            </div>
+            <div class="goal-edit" id="goalVal" title="点击修改每日目标"></div>
+          </div>
+          <div class="cup-wrap">
+            <div class="cup-stage" id="cupStage" title="点一下，咕咚一杯">
+              <img class="cup-img" id="cupImg" src="/images/levels/00.png" alt="我的水杯" draggable="false">
+            </div>
+            <div class="cup-level" id="cupLevel">0 / 8 杯</div>
+          </div>
+          <div class="reply-tag" id="replyTag" hidden></div>
+          <div class="drink-btn-wrap">
+            <button id="btnDrink" class="drink-btn" title="咕咚，干了">
+              <img class="drink-btn-ico" src="/images/icon-drink.png" alt="喝水" draggable="false">
+            </button>
+            <div class="drink-hint" id="drinkHint">咕咚，干了</div>
+          </div>
+          <div class="drink-status" id="drinkStatus"></div>
+
+          <div class="nudge-sel">
+            <div class="nudge-head">
+              <span class="nudge-title">这杯喊谁</span>
+              <span class="nudge-tools">
+                <button id="btnSelAll" class="link-btn">全选</button>
+                <button id="btnSelNone" class="link-btn">清空</button>
+              </span>
+            </div>
+            <div id="nudgeChips" class="nudge-chips"></div>
+            <div id="nudgeEmpty" class="nudge-empty" hidden>还没有水友可喊——先去「好友」页加几个吧</div>
+          </div>
+        </div>
+
+        <div class="card invite-card">
+          <div class="invite-label">我的邀请码 — 发给水友，TA 来加你</div>
+          <div class="invite-row">
+            <span class="invite-code" id="inviteCode">------</span>
+            <button id="btnCopyInvite" class="ghost-btn">复制</button>
+          </div>
+          <div class="invite-sub">
+            <button id="btnCopyLink" class="link-btn">复制邀请链接 🔗</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab：好友 -->
+      <div id="panel-friends" class="tab-panel" hidden>
+        <div class="card add-card">
+          <div class="section-title">加个水友</div>
+          <div class="add-row">
+            <input id="friendCode" type="text" maxlength="6" placeholder="输入对方 6 位邀请码" autocomplete="off"
+                   style="text-transform:uppercase; letter-spacing:2px; flex:1;">
+            <button id="btnAddFriend" class="primary-btn sm">添加</button>
+          </div>
+          <div class="my-code-mini">我的邀请码：<b id="myCodeMini">------</b>
+            <button id="btnCopyMini" class="link-btn">复制</button>
+          </div>
+        </div>
+
+        <div class="card req-card" id="reqCard" hidden>
+          <div class="section-title">好友请求</div>
+          <div id="reqList"></div>
+        </div>
+
+        <div class="card friend-card-list">
+          <div class="section-title">我的水友（<span id="friendCount">0</span>）</div>
+          <div id="friendList"></div>
+        </div>
+      </div>
+
+      <!-- Tab：消息 -->
+      <div id="panel-msgs" class="tab-panel" hidden>
+        <div class="feed-head">
+          <span>最新消息</span>
+          <button id="btnClearFeed" class="ghost-btn sm" hidden>清空</button>
+        </div>
+        <div id="feedFilters" class="feed-filters" hidden>
+          <button type="button" class="f-chip on" data-f="all">全部</button>
+          <button type="button" class="f-chip" data-f="action">催喝·碰杯</button>
+          <button type="button" class="f-chip" data-f="reply">回敬</button>
+          <button type="button" class="f-chip" data-f="drink">动态</button>
+        </div>
+        <div id="feedList"></div>
+      </div>
+    </main>
+
+    <!-- 设置弹层：免打扰 -->
+    <div id="settingsModal" class="modal" hidden>
+      <div class="modal-card">
+        <h3>设置 · 免打扰</h3>
+        <p class="modal-tip">免打扰生效期间，水友催你/喊你都会被拦下，醒来再看也不迟</p>
+        <label class="set-row">
+          <span>手动免打扰</span>
+          <input type="checkbox" id="quietManual">
+        </label>
+        <div class="set-row set-time-row">
+          <span>免打扰时段</span>
+          <span class="time-pair">
+            <input type="time" id="quietStart" value="23:00">
+            <i>至</i>
+            <input type="time" id="quietEnd" value="08:00">
+          </span>
+        </div>
+        <div class="quiet-state" id="quietState"></div>
+        <div class="set-acts">
+          <button id="btnSaveQuiet" class="primary-btn sm">保存</button>
+          <button id="btnCloseSettings" class="ghost-btn">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav id="tabbar" class="tabbar" hidden>
+      <button class="tab-btn active" data-tab="drink">
+        <img class="tab-ico-img" src="/images/tab-drink.png" alt="喝水">喝水
+      </button>
+      <button class="tab-btn" data-tab="friends">
+        <img class="tab-ico-img" src="/images/tab-friends.png" alt="好友">
+        <span class="tab-badge" id="friendReqBadge" hidden>0</span>好友
+      </button>
+      <button class="tab-btn" data-tab="msgs">
+        <img class="tab-ico-img" src="/images/tab-msgs.png" alt="消息">
+        <span class="tab-badge red" id="msgBadge" hidden>0</span>消息
+      </button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

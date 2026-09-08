@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- 仿手绘小杯吉祥物：墨色线条 + 淡蓝水 + 微笑（占位，风格随画作可换） -->
+  <defs>
+    <linearGradient id="w" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e2f4fd"/>
+      <stop offset="1" stop-color="#8fd0f0"/>
+    </linearGradient>
+  </defs>
+  <!-- 把手 -->
+  <path d="M152 112 Q188 110 186 138 Q184 160 154 152"
+        fill="none" stroke="#1c1a15" stroke-width="7" stroke-linecap="round"/>
+  <!-- 水（杯身内，顶部两道小波浪） -->
+  <path d="M48 104 C58 96 70 98 82 106 C94 114 108 112 118 104 C128 96 142 96 152 106
+           L152 142 Q152 160 100 160 Q48 160 48 142 Z" fill="url(#w)"/>
+  <!-- 杯身 -->
+  <path d="M48 100 L48 142 Q48 160 100 160 Q152 160 152 142 L152 100"
+        fill="none" stroke="#1c1a15" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 杯口椭圆 -->
+  <path d="M40 100 Q100 90 160 100 Q100 110 40 100 Z"
+        fill="none" stroke="#1c1a15" stroke-width="7" stroke-linecap="round"/>
+  <!-- 脸 -->
+  <circle cx="80" cy="124" r="4.5" fill="#1c1a15"/>
+  <circle cx="120" cy="124" r="4.5" fill="#1c1a15"/>
+  <path d="M86 136 Q100 148 114 136" fill="none" stroke="#1c1a15" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- 腮红 -->
+  <ellipse cx="70" cy="133" rx="6" ry="3.6" fill="#f3b8a9" opacity=".85"/>
+  <ellipse cx="130" cy="133" rx="6" ry="3.6" fill="#f3b8a9" opacity=".85"/>
+</svg>
