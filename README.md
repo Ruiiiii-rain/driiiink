@@ -9,63 +9,11 @@
 
 ---
 
-## 一、新手 5 分钟跑起来
+## 一、快速开始
 
-### 1. 安装 Node.js
+**零基础新手**：请看 [start.md](start.md)——拿代码 → 装 Node → 启动 → 打开网页，5 分钟搞定，不重复了。
 
-需要 **Node.js ≥ 22.5**（推荐 24 LTS）。检查是否已装：
-
-```bash
-node -v
-```
-
-没有就下载安装（一路默认下一步即可）：
-
-- Windows：https://nodejs.org/zh-cn/download 下载 **LTS 版** `.msi`
-- macOS：同上选 `.pkg`，或用 `brew install node`
-- Linux(Ubuntu)：
-  ```bash
-  curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-  sudo apt-get install -y nodejs
-  ```
-
-安装后重开终端，`node -v` 能看到版本号即可。项目**无需 `npm install`**（没有任何第三方依赖）。
-
-### 2. 获取代码
-
-```bash
-git clone https://github.com/Ruiiiii-rain/driiiink.git
-cd driiiink
-```
-
-（没有 Git 也可以直接下载仓库的 ZIP 并解压。）
-
-### 3. 启动
-
-**Windows：** 双击项目根目录的 `start.bat`——自动启动服务并打开浏览器。
-
-**任何系统（命令行）：**
-
-```bash
-node server.js
-```
-
-看到类似输出即成功：
-
-```
-🥤 喝了么 已启动
-   本机访问: http://localhost:3000
-```
-
-然后浏览器打开 **http://localhost:3000**。
-
-> 第一次启动会自动创建数据库 `data/data.db`（空库）；如果你是从旧版 JSON 升级，会自动迁移并留档。
-
-### 4. 注册账号玩起来
-
-1. 打开页面 → 输入**昵称**、**密码（至少 6 位）**、挑一个饮品头像 → 「开始喝水」；
-2. 进入主页 = 一个大水杯：**每喝一杯点一下（杯子或「干杯」按钮），杯里的手绘水位就涨一格**；
-3. 目标默认每天 8 杯，点右上角「N/8 杯」可以改。
+一句话版（已有 Node ≥ 22.5）：`node server.js` → 打开 http://localhost:3000（Windows 可双击 `start.bat`）。项目无任何第三方依赖，无需 `npm install`；首次启动自动创建 `data/data.db`。
 
 ---
 
