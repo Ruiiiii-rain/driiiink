@@ -125,7 +125,7 @@ input[type="text"]:focus { border-color: var(--primary); }
 
 .avatar-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   margin-bottom: 20px;
 }
@@ -428,7 +428,7 @@ input[type="text"]:focus { border-color: var(--primary); }
   vertical-align: -3px;
   margin-right: 3px;
 }
-.uava.big { width: 32px; height: 32px; vertical-align: middle; margin: 0; }
+.uava.big { width: 38px; height: 38px; vertical-align: middle; margin: 0; }
 .fi {
   width: auto;
   height: 1.05em;
